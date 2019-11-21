@@ -17,13 +17,14 @@ body {
   width: 100%;
   height: 100%;
 }
-.controls {
+.video-container .controls {
   position: fixed;
   bottom: 0;
   width: 100%;
-}
-.title {
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .video-container .controls button {
@@ -31,6 +32,8 @@ body {
   outline: 0;
   box-shadow: none;
   border: 0;
+  height: 7vw;
+  width: 7vw;
 }
 
 .video-container .controls button svg {
@@ -41,4 +44,25 @@ body {
   stroke-linejoin: round;
   width: 100%;
   height: 100%;
+}
+.video-container .controls .title {
+  font-family: sans-serif;
+  font-size: 2vmin;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.video-container .controls .title .series {
+  color: #fefefe;
+  font-weight: bold;
+  font-weight: 1em;
+}
+
+.video-container .controls .title .episode {
+  color: #a1a1a1;
+  font-size: 0.75em;
+  padding-left: 1vw;
 }
