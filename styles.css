@@ -25,7 +25,7 @@ body {
   align-items: center;
   justify-content: space-around;
   padding: 4vmin;
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .video-container .controls button {
@@ -56,6 +56,15 @@ body {
   stroke: none;
 }
 .video-container .controls button.help svg {
+  fill: none;
+}
+.video-container .controls button.episodes svg {
+  fill: none;
+}
+.video-container .controls button.captions svg {
+  stroke: none;
+}
+.video-container .controls button.cast svg {
   fill: none;
 }
 .video-container .controls .title {
