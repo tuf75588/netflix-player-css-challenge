@@ -14,3 +14,15 @@
 ## Video
 * Big Buck Bunny
   * [Link](http://distribution.bbb3d.renderfarming.net/video/mp4/bbb_sunflower_1080p_30fps_normal.mp4)
+
+
+
+## Todo
+
+* [ ] Progress Bar
+* [ ] Background Gradient
+* [ ] Controls to auto appear on hover
+* [ ] Controls disappear after 5 minutes of inactivity
+* [ ] Hover effects on each button
+* [ ] Basic playback controls working with JavaScript
+* [ ] Hide title after reaching minimum width
