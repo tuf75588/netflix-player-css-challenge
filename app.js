@@ -4,13 +4,16 @@ const video = document.querySelector('.video-container video');
 const playButton = document.querySelector(
 	'.video-container .controls button.play',
 );
-/* listeners on different buttons
 
-//play
+//rewind
+const rewind = document.querySelector(
+	'.video-container .controls button.rewind',
+);
 
-//pause
-
-*/
+//fast forward
+const fastForward = document.querySelector(
+	'.video-container .controls button.fast-forward',
+);
 
 playButton.addEventListener('click', function(e) {
 	console.log('clicked');
