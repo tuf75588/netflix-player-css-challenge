@@ -1,3 +1,5 @@
+/* eslint-disable operator-linebreak */
+/* eslint-disable prefer-template */
 const video = document.querySelector('.video-container video');
 const videoContainer = document.querySelector('.video-container');
 // play button
@@ -21,6 +23,15 @@ const fullScreen = document.querySelector(
 	'.video-container .controls button.full-screen',
 );
 
+const watchedBar = document.querySelector(
+	'.video-container .progress-controls .watched-bar',
+);
+
+// element for showing how much time is left in the video
+const timeLeft = document.querySelector(
+	'.video-container .progress-controls .time-remaining',
+);
+
 // eslint-disable-next-line
 playButton.addEventListener('click', () => {
 	if (video.paused) {
@@ -40,9 +51,7 @@ rewind.addEventListener('click', () => {
 });
 
 // toggle between mute states
-toggleVolume.addEventListener('click', () => {
-	video.muted = !video.muted;
-});
+toggleVolume.addEventListener('click', toggleMute);
 
 fullScreen.addEventListener('click', () => {
 	if (!document.fullscreenElement) {
@@ -50,4 +59,40 @@ fullScreen.addEventListener('click', () => {
 	} else {
 		document.exitFullscreen();
 	}
+});
+
+// utility functions
+
+function handleSpecificKeyPress(e) {
+	if (e.code === 'Space') {
+		if (video.paused) video.play();
+		else video.pause();
+	}
+	if (e.code === 'KeyM') {
+		toggleMute();
+	}
+}
+
+function toggleMute() {
+	video.muted = !video.muted;
+}
+
+document.addEventListener('keydown', handleSpecificKeyPress);
+
+let progress;
+
+let total = 634;
+
+video.addEventListener('timeupdate', () => {
+	// eslint-disabled-next-line
+
+	watchedBar.style.width = (video.currentTime / video.duration) * 100 + '%';
+	const totalSecondsRemaining = video.duration - video.currentTime;
+	const minutesRemaining = Math.floor(totalSecondsRemaining / 60);
+	let secondsRemaining = Math.floor(totalSecondsRemaining % 60);
+	secondsRemaining =
+		secondsRemaining < 10 ? '0' + secondsRemaining : secondsRemaining;
+	// eslint-disable-next-line
+
+	timeLeft.textContent = minutesRemaining + ':' + secondsRemaining;
 });

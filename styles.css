@@ -52,12 +52,12 @@ body {
 .video-container .progress-controls .progress-bar .watched-bar,
 .video-container .progress-controls .progress-bar .playhead {
 	background: #e31221;
-	height: 100%;
+	transition: all 0.2s;
 	display: inline-block;
 }
 .video-container .progress-controls .progress-bar .watched-bar {
 	height: 100%;
-	width: 20%;
+	width: 0%;
 }
 
 .video-container .progress-controls .progress-bar .playhead {
