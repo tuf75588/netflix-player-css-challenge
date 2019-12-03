@@ -23,6 +23,6 @@
 * [x] Background Gradient
 * [ ] Controls to auto appear on hover
 * [ ] Controls disappear after 5 minutes of inactivity
-* [ ] Hover effects on each button
-* [ ] Basic playback controls working with JavaScript
+* [x] Hover effects on each button
+* [x] Basic playback controls working with JavaScript
 * [ ] Hide title after reaching minimum width
