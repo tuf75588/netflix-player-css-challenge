@@ -23,6 +23,7 @@ const fullScreen = document.querySelector(
 	'.video-container .controls button.full-screen',
 );
 
+//this watched bar is what displays how much of the video has been watched so far.
 const watchedBar = document.querySelector(
 	'.video-container .progress-controls .watched-bar',
 );
