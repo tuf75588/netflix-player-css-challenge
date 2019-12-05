@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 /* eslint-disable operator-linebreak */
 /* eslint-disable prefer-template */
 const video = document.querySelector('.video-container video');
@@ -23,7 +24,7 @@ const fullScreen = document.querySelector(
 	'.video-container .controls button.full-screen',
 );
 
-//this watched bar is what displays how much of the video has been watched so far.
+// this watched bar is what displays how much of the video has been watched so far.
 const watchedBar = document.querySelector(
 	'.video-container .progress-controls .watched-bar',
 );
@@ -62,14 +63,13 @@ fullScreen.addEventListener('click', () => {
 	}
 });
 
-// utility functions
-
 function handleSpecificKeyPress(e) {
 	if (e.code === 'Space') {
 		if (video.paused) video.play();
 		else video.pause();
 	}
 	if (e.code === 'KeyM') {
+		// eslint-disable-next-line
 		toggleMute();
 	}
 }
@@ -79,10 +79,6 @@ function toggleMute() {
 }
 
 document.addEventListener('keydown', handleSpecificKeyPress);
-
-let progress;
-
-let total = 634;
 
 video.addEventListener('timeupdate', () => {
 	// eslint-disabled-next-line
