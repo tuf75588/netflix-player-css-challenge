@@ -3,9 +3,12 @@
 /* eslint-disable prefer-template */
 const video = document.querySelector('.video-container video');
 const videoContainer = document.querySelector('.video-container');
+const progressBar = document.querySelector(
+	'.video-container .progress-controls .progress-bar',
+);
 // play button
 const playButton = document.querySelector(
-	'.video-container .controls button.play',
+	'.video-container .controls button.play-pause',
 );
 // rewind
 const rewind = document.querySelector(
@@ -34,6 +37,13 @@ const timeLeft = document.querySelector(
 	'.video-container .progress-controls .time-remaining',
 );
 
+const maximizeSVG = document.querySelector(
+	'.video-container .controls button.full-screen .maximize',
+);
+const minimizeSVG = document.querySelector(
+	'.video-container .controls button.full-screen .minimize',
+);
+
 // eslint-disable-next-line
 playButton.addEventListener('click', () => {
 	if (video.paused) {
@@ -55,10 +65,15 @@ rewind.addEventListener('click', () => {
 // toggle between mute states
 toggleVolume.addEventListener('click', toggleMute);
 
+// toggling full screen on video player
 fullScreen.addEventListener('click', () => {
+	maximizeSVG.style.display = 'none';
 	if (!document.fullscreenElement) {
+		minimizeSVG.style = '';
 		videoContainer.requestFullscreen();
 	} else {
+		minimizeSVG.style.display = 'none';
+		maximizeSVG.style.display = '';
 		document.exitFullscreen();
 	}
 });
@@ -92,4 +107,17 @@ video.addEventListener('timeupdate', () => {
 	// eslint-disable-next-line
 
 	timeLeft.textContent = minutesRemaining + ':' + secondsRemaining;
+});
+
+/*
+thanks to MDN for the code to properly scrub the progress bar
+and adjust the time left in the video accordingly.
+*/
+
+// if i click somewhere in the bar, adjust the time.
+progressBar.addEventListener('click', (e) => {
+	let pos =
+		(e.pageX - (progressBar.offsetLeft + progressBar.offsetParent.offsetLeft)) /
+		progressBar.offsetWidth;
+	video.currentTime = pos * video.duration;
 });
