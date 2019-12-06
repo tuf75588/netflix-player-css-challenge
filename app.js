@@ -3,85 +3,90 @@
 /* eslint-disable prefer-template */
 const video = document.querySelector('.video-container video');
 const videoContainer = document.querySelector('.video-container');
+const controlsContainer = document.querySelector(
+	'.video-container .controls-container',
+);
+
+const playPauseButton = document.querySelector(
+	'.video-container .controls button.play-pause',
+);
+const rewindButton = document.querySelector(
+	'.video-container .controls button.rewind',
+);
+const fastForwardButton = document.querySelector(
+	'.video-container .controls button.fast-forward',
+);
+const volumeButton = document.querySelector(
+	'.video-container .controls button.volume',
+);
+const fullScreenButton = document.querySelector(
+	'.video-container .controls button.full-screen',
+);
+const playButton = playPauseButton.querySelector('.playing');
+const pauseButton = playPauseButton.querySelector('.paused');
+const fullVolumeButton = volumeButton.querySelector('.full-volume');
+const mutedButton = volumeButton.querySelector('.muted');
+const maximizeButton = fullScreenButton.querySelector('.maximize');
+const minimizeButton = fullScreenButton.querySelector('.minimize');
+
 const progressBar = document.querySelector(
 	'.video-container .progress-controls .progress-bar',
 );
-// play button
-const playButton = document.querySelector(
-	'.video-container .controls button.play-pause',
-);
-// rewind
-const rewind = document.querySelector(
-	'.video-container .controls button.rewind',
-);
-// fast forward
-const fastForward = document.querySelector(
-	'.video-container .controls button.fast-forward',
-);
-// volume
-const toggleVolume = document.querySelector(
-	'.video-container .controls button.volume',
-);
-
-const fullScreen = document.querySelector(
-	'.video-container .controls button.full-screen',
-);
-
-// this watched bar is what displays how much of the video has been watched so far.
 const watchedBar = document.querySelector(
-	'.video-container .progress-controls .watched-bar',
+	'.video-container .progress-controls .progress-bar .watched-bar',
 );
-
-// element for showing how much time is left in the video
 const timeLeft = document.querySelector(
 	'.video-container .progress-controls .time-remaining',
 );
-
-const maximizeSVG = document.querySelector(
-	'.video-container .controls button.full-screen .maximize',
-);
-const minimizeSVG = document.querySelector(
-	'.video-container .controls button.full-screen .minimize',
-);
-
 // eslint-disable-next-line
-playButton.addEventListener('click', () => {
+playPauseButton.addEventListener('click', () => {
 	if (video.paused) {
 		// we are in a paused state, on next click the video will play
 		video.play();
+		playButton.style.display = 'none';
+		pauseButton.style.display = '';
 	} else {
 		video.pause();
+		playButton.style.display = '';
+		pauseButton.style.display = 'none';
 	}
 });
 
-fastForward.addEventListener('click', () => {
+fastForwardButton.addEventListener('click', () => {
 	video.currentTime += 10;
 });
 
-rewind.addEventListener('click', () => {
+rewindButton.addEventListener('click', () => {
 	video.currentTime -= 10;
 });
 
 // toggle between mute states
-toggleVolume.addEventListener('click', toggleMute);
+volumeButton.addEventListener('click', toggleMute);
 
 // toggling full screen on video player
-fullScreen.addEventListener('click', () => {
-	maximizeSVG.style.display = 'none';
+fullScreenButton.addEventListener('click', () => {
+	maximizeButton.style.display = 'none';
 	if (!document.fullscreenElement) {
-		minimizeSVG.style = '';
+		minimizeButton.style = '';
 		videoContainer.requestFullscreen();
 	} else {
-		minimizeSVG.style.display = 'none';
-		maximizeSVG.style.display = '';
+		minimizeButton.style.display = 'none';
+		maximizeButton.style.display = '';
 		document.exitFullscreen();
 	}
 });
 
 function handleSpecificKeyPress(e) {
 	if (e.code === 'Space') {
-		if (video.paused) video.play();
-		else video.pause();
+		if (video.paused) {
+			video.play();
+			pauseButton.style.display = '';
+			playButton.style.display = 'none';
+		} else {
+			video.pause();
+			pauseButton.style.display = 'none';
+			playButton.style.display = '';
+		}
 	}
 	if (e.code === 'KeyM') {
 		// eslint-disable-next-line

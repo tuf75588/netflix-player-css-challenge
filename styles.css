@@ -1,147 +1,162 @@
 body {
-	margin: 0;
-	padding: 0;
-	width: 100vw;
-	height: 100vh;
-	overflow: hidden;
-	background: #000;
-	font-family: 'Rubik', sans-serif;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: black;
+  font-family: 'Rubik', sans-serif;
 }
+
 .video-container {
-	width: 100%;
-	height: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
 .video-container video {
-	width: 100%;
-	height: 100%;
+  width: 100%;
+  height: 100%;
 }
+
 .video-container .controls-container {
-	position: fixed;
-	bottom: 0;
-	width: 100%;
-	padding: 4vmin;
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-end;
-	min-height: 30vh;
-	/* thanks for the gradient help theArtifacts! */
-	background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.9));
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 40vh;
+  /* Thanks to theArtifacts */
+  background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.9));
+  transition: opacity 0.5s linear;
 }
+
 .video-container .progress-controls {
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	color: #fff;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
 }
+
 .video-container .progress-controls .time-remaining {
-	margin: 1vw;
+  margin: 1vw;
+  width: 4vw;
 }
+
 .video-container .progress-controls .progress-bar {
-	background: #5b5b5b;
-	height: 1vw;
-	max-height: 10px;
-	width: 90%;
-	display: flex;
-	align-items: center;
-}
-.video-container .progress-controls .progress-bar:hover {
-	cursor: pointer;
+  width: 90vw;
+  height: 1vw;
+  max-height: 7px;
+  background: #5B5B5B;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }
 
 .video-container .progress-controls .progress-bar .watched-bar,
 .video-container .progress-controls .progress-bar .playhead {
-	background: #e31221;
-	transition: all 0.2s;
-	display: inline-block;
+  background: #E31221;
+  display: inline-block;
+  transition: all 0.2s;
 }
+
 .video-container .progress-controls .progress-bar .watched-bar {
-	height: 100%;
-	width: 0%;
+  height: 110%;
+  width: 20%;
 }
 
 .video-container .progress-controls .progress-bar .playhead {
-	height: 2vw;
-	width: 2vw;
-	max-height: 25px;
-	max-width: 25px;
-	border-radius: 50%;
-	transform: translateX(-50%);
+  height: 3vw;
+  width: 3vw;
+  max-height: 25px;
+  max-width: 25px;
+  border-radius: 50%;
+  transform: translateX(-50%);
 }
+
 .video-container .controls {
-	width: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: space-around;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .video-container .controls button {
-	background: none;
-	outline: 0;
-	box-shadow: none;
-	border: 0;
-	height: 5vw;
-	width: 5vw;
-	min-width: 50px;
-	min-height: 50px;
-	transform: scale(1);
-	margin: 0px 1vw;
-	opacity: 0.4;
+  background: none;
+  outline: none;
+  box-shadow: none;
+  border: none;
+  width: 5vw;
+  height: 5vw;
+  min-width: 50px;
+  min-height: 50px;
+  margin: 0px 1vw;
+  opacity: 0.4;
+  transform: scale(0.9);
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
 }
+
 .video-container .controls button:hover {
-	opacity: 1;
-	transform: scale(1.3);
-	transition: 0.3s ease-in-out;
-	cursor: pointer;
+  opacity: 1;
+  transform: scale(1.2);
 }
 
 .video-container .controls button svg {
-	fill: white;
-	stroke: white;
-	stroke-width: 2;
-	stroke-linecap: round;
-	stroke-linejoin: round;
-	width: 100%;
-	height: 100%;
+  fill: white;
+  stroke: white;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  width: 100%;
+  height: 100%;
 }
 
 .video-container .controls button.volume svg path,
 .video-container .controls button.help svg,
 .video-container .controls button.episodes svg,
 .video-container .controls button.full-screen svg,
+.video-container .controls button.volume svg path,
 .video-container .controls button.cast svg {
-	fill: none;
+  fill: none;
 }
-.video-container .controls .full-screen .minimize {
-	display: none;
+
+.video-container .controls button.rewind svg,
+.video-container .controls button.fast-forward svg {
+  stroke: none;
 }
-.video-container .controls .title {
-	font-size: 2vw;
-	width: 100%;
-	height: 100%;
-	display: flex;
-	justify-content: flex-start;
-	align-items: center;
-}
+
 .video-container .controls button.captions svg {
-	stroke: none;
+  stroke: none;
 }
-.video-container .controls button.fast-forward svg,
-.video-container .controls button.rewind svg {
-	stroke: none;
+
+.video-container .controls .title {
+  font-size: 2vw;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+@media only screen and (max-width: 768px) {
+  .video-container .controls .title {
+    display: none;
+  }
 }
 
 .video-container .controls .title .series {
-	color: #fefefe;
-	font-weight: bold;
-	font-weight: 1em;
+  color: #FEFEFE;
+  font-weight: bold;
+  font-size: 1em;
 }
 
 .video-container .controls .title .episode {
-	color: #a1a1a1;
-	font-size: 0.75em;
-	padding-left: 1vw;
+  color: #A1A1A1;
+  font-size: 0.75em;
+  padding-left: 1vw;
 }
