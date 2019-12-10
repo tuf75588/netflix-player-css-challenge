@@ -21,8 +21,8 @@
 
 * [x] Progress Bar
 * [x] Background Gradient
-* [ ] Controls to auto appear on hover
-* [ ] Controls disappear after 5 minutes of inactivity
+* [x] Controls to auto appear on hover
+* [x] Controls disappear after 5 minutes of inactivity
 * [x] Hover effects on each button
 * [x] Basic playback controls working with JavaScript
-* [ ] Hide title after reaching minimum width
+* [x] Hide title after reaching minimum width
