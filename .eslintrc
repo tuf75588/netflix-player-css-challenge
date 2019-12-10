@@ -1,6 +1,14 @@
 {
 	"rules": {
-		"indent": ["error", "tab"],
-		"no-tabs": ["error", { "allowIndentationTabs": true }]
+		"indent": [
+			"error",
+			"tab"
+		],
+		"no-tabs": [
+			"error",
+			{
+				"allowIndentationTabs": true
+			}
+		]
 	}
 }

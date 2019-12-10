@@ -3,41 +3,24 @@
 /* eslint-disable prefer-template */
 const video = document.querySelector('.video-container video');
 const videoContainer = document.querySelector('.video-container');
-const controlsContainer = document.querySelector(
-	'.video-container .controls-container',
-);
+const controlsContainer = document.querySelector('.video-container .controls-container');
 
-const playPauseButton = document.querySelector(
-	'.video-container .controls button.play-pause',
-);
-const rewindButton = document.querySelector(
-	'.video-container .controls button.rewind',
-);
-const fastForwardButton = document.querySelector(
-	'.video-container .controls button.fast-forward',
-);
-const volumeButton = document.querySelector(
-	'.video-container .controls button.volume',
-);
-const fullScreenButton = document.querySelector(
-	'.video-container .controls button.full-screen',
-);
+const playPauseButton = document.querySelector('.video-container .controls button.play-pause');
+const rewindButton = document.querySelector('.video-container .controls button.rewind');
+const fastForwardButton = document.querySelector('.video-container .controls button.fast-forward');
+const volumeButton = document.querySelector('.video-container .controls button.volume');
+const fullScreenButton = document.querySelector('.video-container .controls button.full-screen');
 const playButton = playPauseButton.querySelector('.playing');
 const pauseButton = playPauseButton.querySelector('.paused');
+
 const fullVolumeButton = volumeButton.querySelector('.full-volume');
 const mutedButton = volumeButton.querySelector('.muted');
 const maximizeButton = fullScreenButton.querySelector('.maximize');
 const minimizeButton = fullScreenButton.querySelector('.minimize');
 
-const progressBar = document.querySelector(
-	'.video-container .progress-controls .progress-bar',
-);
-const watchedBar = document.querySelector(
-	'.video-container .progress-controls .progress-bar .watched-bar',
-);
-const timeLeft = document.querySelector(
-	'.video-container .progress-controls .time-remaining',
-);
+const progressBar = document.querySelector('.video-container .progress-controls .progress-bar');
+const watchedBar = document.querySelector('.video-container .progress-controls .progress-bar .watched-bar');
+const timeLeft = document.querySelector('.video-container .progress-controls .time-remaining');
 // eslint-disable-next-line
 playPauseButton.addEventListener('click', () => {
 	if (video.paused) {
@@ -65,13 +48,13 @@ volumeButton.addEventListener('click', toggleMute);
 
 // toggling full screen on video player
 fullScreenButton.addEventListener('click', () => {
-	maximizeButton.style.display = 'none';
 	if (!document.fullscreenElement) {
-		minimizeButton.style = '';
 		videoContainer.requestFullscreen();
+		maximizeButton.style.display = 'none';
+		minimizeButton.style.display = '';
 	} else {
-		minimizeButton.style.display = 'none';
 		maximizeButton.style.display = '';
+		minimizeButton.style.display = 'none';
 		document.exitFullscreen();
 	}
 });
@@ -95,6 +78,13 @@ function handleSpecificKeyPress(e) {
 }
 
 function toggleMute() {
+	if (video.muted) {
+		fullVolumeButton.style.display = '';
+		mutedButton.style.display = 'none';
+	} else {
+		fullVolumeButton.style.display = 'none';
+		mutedButton.style.display = '';
+	}
 	video.muted = !video.muted;
 }
 
@@ -103,12 +93,14 @@ document.addEventListener('keydown', handleSpecificKeyPress);
 video.addEventListener('timeupdate', () => {
 	// eslint-disabled-next-line
 
-	watchedBar.style.width = (video.currentTime / video.duration) * 100 + '%';
+	watchedBar.style.width = video.currentTime / video.duration * 100 + '%';
 	const totalSecondsRemaining = video.duration - video.currentTime;
 	const minutesRemaining = Math.floor(totalSecondsRemaining / 60);
 	let secondsRemaining = Math.floor(totalSecondsRemaining % 60);
 	secondsRemaining =
-		secondsRemaining < 10 ? '0' + secondsRemaining : secondsRemaining;
+
+			secondsRemaining < 10 ? '0' + secondsRemaining :
+			secondsRemaining;
 	// eslint-disable-next-line
 
 	timeLeft.textContent = minutesRemaining + ':' + secondsRemaining;
@@ -121,8 +113,6 @@ and adjust the time left in the video accordingly.
 
 // if i click somewhere in the bar, adjust the time.
 progressBar.addEventListener('click', (e) => {
-	let pos =
-		(e.pageX - (progressBar.offsetLeft + progressBar.offsetParent.offsetLeft)) /
-		progressBar.offsetWidth;
+	const pos = (e.pageX - (progressBar.offsetLeft + progressBar.offsetParent.offsetLeft)) / progressBar.offsetWidth;
 	video.currentTime = pos * video.duration;
 });
