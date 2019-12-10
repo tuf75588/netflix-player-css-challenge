@@ -50,11 +50,7 @@ volumeButton.addEventListener('click', toggleMute);
 fullScreenButton.addEventListener('click', () => {
 	if (!document.fullscreenElement) {
 		videoContainer.requestFullscreen();
-		maximizeButton.style.display = 'none';
-		minimizeButton.style.display = '';
 	} else {
-		maximizeButton.style.display = '';
-		minimizeButton.style.display = 'none';
 		document.exitFullscreen();
 	}
 });
@@ -75,19 +71,43 @@ function handleSpecificKeyPress(e) {
 		// eslint-disable-next-line
 		toggleMute();
 	}
+	if (e.code === 'KeyF') {
+		toggleFullScreen();
+	}
+}
+
+function toggleFullScreen() {
+	if (!document.fullscreenElement) {
+		videoContainer.requestFullscreen();
+	} else {
+		document.exitFullscreen();
+	}
 }
 
 function toggleMute() {
+	video.muted = !video.muted;
 	if (video.muted) {
-		fullVolumeButton.style.display = '';
-		mutedButton.style.display = 'none';
-	} else {
 		fullVolumeButton.style.display = 'none';
 		mutedButton.style.display = '';
+	} else {
+		fullVolumeButton.style.display = '';
+		mutedButton.style.display = 'none';
 	}
-	video.muted = !video.muted;
 }
+/*
+use native fullscreen event change handler
+for handling button press of escape to exit video full screen
+*/
 
+document.addEventListener('fullscreenchange', (event) => {
+	if (!document.fullscreenElement) {
+		maximizeButton.style.display = '';
+		minimizeButton.style.display = 'none';
+	} else {
+		maximizeButton.style.display = 'none';
+		minimizeButton.style.display = '';
+	}
+});
 document.addEventListener('keydown', handleSpecificKeyPress);
 
 video.addEventListener('timeupdate', () => {
