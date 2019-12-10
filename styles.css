@@ -160,3 +160,7 @@ body {
 	font-size: 0.75em;
 	padding-left: 1vw;
 }
+
+.active {
+	transition: all 0.2s ease-in-out;
+}

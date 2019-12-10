@@ -22,6 +22,7 @@ const progressBar = document.querySelector('.video-container .progress-controls 
 const watchedBar = document.querySelector('.video-container .progress-controls .progress-bar .watched-bar');
 const timeLeft = document.querySelector('.video-container .progress-controls .time-remaining');
 // eslint-disable-next-line
+
 playPauseButton.addEventListener('click', () => {
 	if (video.paused) {
 		// we are in a paused state, on next click the video will play
@@ -33,6 +34,32 @@ playPauseButton.addEventListener('click', () => {
 		playButton.style.display = '';
 		pauseButton.style.display = 'none';
 	}
+});
+
+// make sure some svgs do not display below their counterpart
+mutedButton.style.display = 'none';
+
+let controlsTimeout;
+controlsContainer.style.opacity = '0';
+watchedBar.style.width = '0px';
+pauseButton.style.display = 'none';
+minimizeButton.style.display = 'none';
+
+const displayControls = () => {
+	controlsContainer.style.opacity = '1';
+	document.body.style.cursor = 'initial';
+	if (controlsTimeout) {
+		clearTimeout(controlsTimeout);
+	}
+	controlsTimeout = setTimeout(() => {
+		controlsContainer.style.opacity = '0';
+		document.body.style.cursor = 'none';
+	}, 5000);
+};
+
+document.addEventListener('mouseover', (event) => {
+	controlsContainer.style.display = '';
+	controlsContainer.classList.toggle('active');
 });
 
 fastForwardButton.addEventListener('click', () => {
@@ -74,6 +101,7 @@ function handleSpecificKeyPress(e) {
 	if (e.code === 'KeyF') {
 		toggleFullScreen();
 	}
+	displayControls();
 }
 
 function toggleFullScreen() {
@@ -135,4 +163,9 @@ and adjust the time left in the video accordingly.
 progressBar.addEventListener('click', (e) => {
 	const pos = (e.pageX - (progressBar.offsetLeft + progressBar.offsetParent.offsetLeft)) / progressBar.offsetWidth;
 	video.currentTime = pos * video.duration;
+});
+
+// toggle display controls function on mousemoving too
+document.addEventListener('mousemove', () => {
+	displayControls();
 });

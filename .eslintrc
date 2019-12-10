@@ -5,7 +5,7 @@
 			"tab"
 		],
 		"no-tabs": [
-			"warning",
+				1,
 			{
 				"allowIndentationTabs": true
 			}
